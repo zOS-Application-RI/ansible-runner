@@ -7,23 +7,39 @@ rsync
 sshpass [epel]
 
 # ansible
-python38-cffi [platform:centos-8]
-python38-cryptography [platform:centos-8]
-python38-jinja2 [platform:centos-8]
-python38-pycparser [platform:centos-8]
-python38-six [platform:centos-8]
-python38-yaml [platform:centos-8]
+python3-cffi 
+#
+#[platform:centos-8]
+python3-cryptography 
+#
+#[platform:centos-8]
+python3-jinja2 
+#[platform:centos-8]
+python3-pycparser 
+#[platform:centos-8]
+python3-six 
+#[platform:centos-8]
+python3-yaml 
+#[platform:centos-8]
 
 # ncclient
-python38-lxml [platform:centos-8 platform:rhel-8]
+python3-lxml 
+#[platform:centos-8 platform:rhel-8]
 
 # paramiko
-findutils [compile platform:centos-8 platform:rhel-8]
-gcc [compile platform:centos-8 platform:rhel-8]
-make [compile platform:centos-8 platform:rhel-8]
-python38-devel [compile platform:centos-8 platform:rhel-8]
+findutils [compile] 
+#[platform:centos-8 platform:rhel-8]
+gcc [compile] 
+#[platform:centos-8 platform:rhel-8]
+make [compile] 
+#[platform:centos-8 platform:rhel-8]
+python3-devel [compile] 
+#[platform:centos-8 platform:rhel-8]
 
 # pypsrp
-krb5-devel [compile platform:centos-8 platform:rhel-8]
-krb5-workstation [platform:centos-8 platform:rhel-8]
-python38-requests [platform:centos-8 platform:rhel-8]
+krb5-devel [compile] 
+#[platform:centos-8 platform:rhel-8]
+krb5-workstation 
+#[platform:centos-8 platform:rhel-8]
+python3-requests 
+#[platform:centos-8 platform:rhel-8]
