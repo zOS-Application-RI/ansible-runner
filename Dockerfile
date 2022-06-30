@@ -1,12 +1,12 @@
 ARG PYTHON_BASE_IMAGE=docker.io/ashish1981/python-base:latest
 ARG PYTHON_BUILDER_IMAGE=docker.io/ashish1981/python-builder:latest
-ARG ANSIBLE_BRANCH="main"
+ARG ANSIBLE_BRANCH=""
 ARG ZUUL_SIBLINGS=""
 
 FROM $PYTHON_BUILDER_IMAGE as builder
 # =============================================================================
-ARG ANSIBLE_BRANCH="main"
-ARG ZUUL_SIBLINGS
+ARG ANSIBLE_BRANCH=""
+ARG ZUUL_SIBLINGS=""
 
 COPY . /tmp/src
 RUN if [ "$ANSIBLE_BRANCH" != "" ] ; then \
