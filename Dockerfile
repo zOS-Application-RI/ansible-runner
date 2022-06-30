@@ -5,7 +5,7 @@ ARG ZUUL_SIBLINGS=""
 
 FROM $PYTHON_BUILDER_IMAGE as builder
 # =============================================================================
-ARG ANSIBLE_BRANCH
+ARG ANSIBLE_BRANCH="main"
 ARG ZUUL_SIBLINGS
 
 COPY . /tmp/src
