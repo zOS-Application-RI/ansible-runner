@@ -7,7 +7,6 @@ FROM $PYTHON_BUILDER_IMAGE as builder
 # =============================================================================
 ARG ANSIBLE_BRANCH="stable-2.12"
 ARG ZUUL_SIBLINGS=""
-
 COPY . /tmp/src
 RUN if [ "$ANSIBLE_BRANCH" != "" ] ; then \
       echo "Installing requirements.txt / upper-constraints.txt for Ansible $ANSIBLE_BRANCH" ; \
