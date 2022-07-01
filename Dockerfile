@@ -1,4 +1,4 @@
-ARG PYTHON_BASE_IMAGE=docker.io/ashish1981/python-base:main-2022-06-30--21-16
+ARG PYTHON_BASE_IMAGE=docker.io/ashish1981/python-base:latest
 ARG PYTHON_BUILDER_IMAGE=docker.io/ashish1981/python-builder:latest
 ARG ANSIBLE_BRANCH="stable-2.12"
 ARG ZUUL_SIBLINGS=""
