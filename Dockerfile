@@ -27,7 +27,6 @@ RUN assemble
 
 FROM $PYTHON_BASE_IMAGE
 # =============================================================================
-
 COPY --from=builder /output/ /output
 RUN /output/install-from-bindep \
   && rm -rf /output
