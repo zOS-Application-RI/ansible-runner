@@ -204,10 +204,13 @@ jobs:
       #   with:
       #     sarif_file: snyk.sarif
 
+  docker-maifest-merge:
+    runs-on: ubuntu-latest
+    needs: [docker-s390x, docker-arm64]
+    steps:
       - name: Create and push manifest images
         uses: Noelware/docker-manifest-action@master # or use whatever version.
         with:
           base-image: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}
           extra-images: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}:latest-arm64, ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}:latest-s390x
-
           push: true
