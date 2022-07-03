@@ -8,7 +8,8 @@ FROM $PYTHON_BUILDER_IMAGE as builder
 ARG ANSIBLE_BRANCH="stable-2.12"
 ARG ZUUL_SIBLINGS=""
 COPY . /tmp/src
-RUN if [ "$ANSIBLE_BRANCH" != "" ] ; then \
+RUN dnf install -y --allowerasing libcurl libcurl-devel openssl-devel libxml2 libxml2-devel libxslt libxslt-devel && \
+    if [ "$ANSIBLE_BRANCH" != "" ] ; then \
       echo "Installing requirements.txt / upper-constraints.txt for Ansible $ANSIBLE_BRANCH" ; \
       cp /tmp/src/tools/requirements-$ANSIBLE_BRANCH.txt /tmp/src/requirements.txt ; \
       cp /tmp/src/tools/upper-constraints-$ANSIBLE_BRANCH.txt /tmp/src/upper-constraints.txt ; \
@@ -17,8 +18,7 @@ RUN if [ "$ANSIBLE_BRANCH" != "" ] ; then \
       cp /tmp/src/tools/requirements.txt /tmp/src/requirements.txt ; \
     fi \
     && cp /tmp/src/tools/build-requirements.txt /tmp/src/build-requirements.txt \
-    && cp /tmp/src/tools/bindep.txt /tmp/src/bindep.txt \
-    && dnf install -y --allowerasing libcurl libcurl-devel openssl-devel libxml2 libxml2-devel
+    && cp /tmp/src/tools/bindep.txt /tmp/src/bindep.txt
 
 # NOTE(pabelanger): For downstream builds, we compile everything from source
 # over using existing wheels. Do this upstream too so we can better catch
