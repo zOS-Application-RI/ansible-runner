@@ -3,7 +3,7 @@ PYTHON ?= python3
 CONTAINER_ENGINE ?= docker
 
 NAME = ansible-runner
-IMAGE_NAME ?= quay.io/ansible/ansible-runner
+IMAGE_NAME ?= docker.io/ashish1981/ansible-runner
 IMAGE_NAME_STRIPPED := $(word 1,$(subst :, ,$(IMAGE_NAME)))
 GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 ANSIBLE_BRANCH ?=
