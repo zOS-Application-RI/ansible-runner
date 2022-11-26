@@ -32,6 +32,11 @@ def stream_dir(source_directory, stream):
                             permissions |= 0xA000
                             zip_info.external_attr = permissions << 16
                             archive.writestr(zip_info, os.readlink(full_path))
+                        elif stat.S_ISFIFO(os.stat(full_path).st_mode):
+                            # skip any pipes, as python hangs when attempting
+                            # to open them.
+                            # i.e. ssh_key_data that was never cleaned up
+                            continue
                         else:
                             archive.write(
                                 os.path.join(dirpath, fname), arcname=os.path.join(relpath, fname)
@@ -46,6 +51,7 @@ def stream_dir(source_directory, stream):
             else:
                 target = stream
             target.write(json.dumps({"zipfile": zip_size}).encode("utf-8") + b"\n")
+            target.flush()
             with Base64IO(target) as encoded_target:
                 for line in source:
                     encoded_target.write(line)
@@ -81,6 +87,12 @@ def unstream_dir(stream, length, target_directory):
                 if os.path.exists(out_path):
                     if is_symlink:
                         os.remove(out_path)
+                    elif stat.S_ISFIFO(os.stat(out_path).st_mode):
+                        # remove any pipes, as python hangs when attempting
+                        # to open them.
+                        # i.e. ssh_key_data that was never cleaned up
+                        os.remove(out_path)
+                        continue
                     elif os.path.isdir(out_path):
                         # Special case, the important dirs were pre-created so don't try to chmod them
                         continue
