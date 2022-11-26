@@ -5,6 +5,7 @@ openssh-clients [!platform:ubuntu-bionic]
 openssh-client [platform:ubuntu-bionic]
 rsync
 sshpass [epel]
+cython3 [compile]
 
 # ansible
 python3-cffi 
@@ -27,6 +28,7 @@ libffi-devel
 openssl-devel [compile] 
 
 # pypsrp
+cython3 [compile] 
 krb5-devel [compile] 
 krb5-workstation 
 python3-requests 
