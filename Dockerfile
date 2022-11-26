@@ -8,7 +8,7 @@ FROM $PYTHON_BUILDER_IMAGE as builder
 ARG ANSIBLE_BRANCH="stable-2.12"
 ARG ZUUL_SIBLINGS=""
 COPY . /tmp/src
-RUN dnf install -y --allowerasing libcurl libcurl-devel openssl-devel libxml2 libxml2-devel libxslt libxslt-devel cython3 && \
+RUN dnf install -y --allowerasing libcurl libcurl-devel openssl-devel libxml2 libxml2-devel libxslt libxslt-devel && \
     if [ "$ANSIBLE_BRANCH" != "" ] ; then \
       echo "Installing requirements.txt / upper-constraints.txt for Ansible $ANSIBLE_BRANCH" ; \
       cp /tmp/src/tools/requirements-$ANSIBLE_BRANCH.txt /tmp/src/requirements.txt ; \
@@ -23,7 +23,7 @@ RUN dnf install -y --allowerasing libcurl libcurl-devel openssl-devel libxml2 li
 # NOTE(pabelanger): For downstream builds, we compile everything from source
 # over using existing wheels. Do this upstream too so we can better catch
 # issues.
-ENV PIP_OPTS=--no-build-isolation
+# ENV PIP_OPTS=--no-build-isolation
 RUN assemble
 
 FROM $PYTHON_BASE_IMAGE

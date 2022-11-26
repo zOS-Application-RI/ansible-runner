@@ -4,12 +4,13 @@ on:
   push:
     # branches:
     branches:  
-      - 'main'
+      # - 'main'
+      - 'v*'
     tags:
       - 'v*'
-  # pull_request:
-  #   branches:
-  #     - 'main'
+  pull_request:
+    branches:
+      - 'main'
 
 jobs:
   docker-s390x:
