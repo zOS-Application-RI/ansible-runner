@@ -23,6 +23,7 @@ make [compile]
 python3-devel [compile] 
 
 # pypsrp
+cython [compile]
 krb5-devel [compile] 
 krb5-workstation 
 python3-requests 
