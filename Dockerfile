@@ -5,7 +5,7 @@ ARG ZUUL_SIBLINGS=""
 
 FROM $PYTHON_BUILDER_IMAGE as builder
 # =============================================================================
-ARG ANSIBLE_BRANCH="stable-2.14"
+ARG ANSIBLE_BRANCH="stable-2.12"
 ARG ZUUL_SIBLINGS=""
 COPY . /tmp/src
 RUN dnf install -y --allowerasing libcurl libcurl-devel openssl-devel libxml2 libxml2-devel libxslt libxslt-devel && \
