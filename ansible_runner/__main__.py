@@ -181,7 +181,7 @@ DEFAULT_CLI_ARGS = {
             ("--project-dir",),
             dict(
                 help="optional path for the location of the playbook content directory "
-                     "(default=<private_data_dir/project)"
+                     "(default=<private_data_dir>/project)"
             ),
         ),
         (
@@ -869,21 +869,21 @@ def main(sys_args=None):
                     else:
                         sys.stderr.write(exc)
                     return 1
-            return(res.rc)
+            return res.rc
 
     try:
         with open(pidfile, 'r') as f:
             pid = int(f.readline())
     except IOError:
-        return(1)
+        return 1
 
     if vargs.get('command') == 'stop':
         Runner.handle_termination(pid, pidfile=pidfile)
-        return (0)
+        return 0
 
     elif vargs.get('command') == 'is-alive':
         try:
             os.kill(pid, signal.SIG_DFL)
-            return(0)
+            return 0
         except OSError:
-            return(1)
+            return 1
