@@ -8,7 +8,7 @@ FROM $PYTHON_BUILDER_IMAGE as builder
 ARG ANSIBLE_BRANCH="stable-2.12"
 ARG ZUUL_SIBLINGS=""
 COPY . /tmp/src
-RUN dnf install -y --allowerasing libcurl libcurl-devel openssl-devel libxml2 libxml2-devel libxslt libxslt-devel && \
+RUN dnf install -y --allowerasing libcurl libcurl-devel openssl-devel libxml2 libxml2-devel libxslt libxslt-devel rust-toolset && \
     if [ "$ANSIBLE_BRANCH" != "" ] ; then \
       echo "Installing requirements.txt / upper-constraints.txt for Ansible $ANSIBLE_BRANCH" ; \
       cp /tmp/src/tools/requirements-$ANSIBLE_BRANCH.txt /tmp/src/requirements.txt ; \
