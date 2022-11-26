@@ -14,9 +14,12 @@ python3-jinja2
 python3-pycparser 
 python3-six 
 python3-yaml 
+python3-pip
+python3-bcrypt
 
 # ncclient
 python3-lxml 
+
 # paramiko
 findutils [compile] 
 gcc [compile] 
@@ -25,5 +28,5 @@ python3-devel [compile]
 
 # pypsrp
 krb5-devel [compile] 
-krb5-workstation 
+krb5-workstation [compile]
 python3-requests 
