@@ -9,7 +9,7 @@ cython3 [compile]
 
 # ansible
 python3-cffi 
-python3-cryptography 
+python39-cryptography 
 python3-jinja2 
 python3-pycparser 
 python3-six 
@@ -17,7 +17,6 @@ python3-yaml
 
 # ncclient
 python3-lxml 
-
 # paramiko
 findutils [compile] 
 gcc [compile] 
