@@ -162,7 +162,7 @@ def dump_artifact(obj, path, filename=None):
 
         try:
             with open(fn, 'w') as f:
-                os.chmod(fn, stat.S_IRUSR)
+                os.chmod(fn, stat.S_IRUSR | stat.S_IWUSR)
                 f.write(str(obj))
         finally:
             fcntl.lockf(lock_fd, fcntl.LOCK_UN)
@@ -234,8 +234,12 @@ def dump_artifacts(kwargs):
         if isinstance(obj, MutableMapping):
             kwargs['inventory'] = dump_artifact(json.dumps(obj), path, 'hosts.json')
         elif isinstance(obj, string_types):
-            if not os.path.exists(obj):
+            if not os.path.exists(os.path.join(path, obj)):
                 kwargs['inventory'] = dump_artifact(obj, path, 'hosts')
+            elif os.path.isabs(obj):
+                kwargs['inventory'] = obj
+            else:
+                kwargs['inventory'] = os.path.join(path, obj)
 
     if not kwargs.get('suppress_env_files', False):
         for key in ('envvars', 'extravars', 'passwords', 'settings'):
