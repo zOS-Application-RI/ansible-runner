@@ -9,7 +9,7 @@ cython3 [compile]
 
 # ansible
 python3-cffi 
-python39-cryptography 
+cryptography [platform:redhat]
 python3-jinja2 
 python3-pycparser 
 python3-six 
